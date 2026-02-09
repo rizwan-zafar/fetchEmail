@@ -1,0 +1,12 @@
+node_modules
+.git
+.gitignore
+README.md
+npm-debug.log
+yarn-error.log
+.env
+.env
+.vscode
+.idea
+coverage
+tests
