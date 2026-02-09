@@ -10,8 +10,8 @@ const PORT = 3000;
 const EMAIL_REGEX =
   /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
 
-const MAX_PAGES = 50;
-const CONCURRENCY = 5;
+const MAX_PAGES = 30;
+const CONCURRENCY = 3;
 
 app.get("/welcome", (req, res) => {
     res.json({
@@ -30,10 +30,14 @@ app.get("/extract-emails", async (req, res) => {
     ? domain
     : `https://${domain}`;
 
-  const browser = await puppeteer.launch({
-    headless: "new",
-    args: ["--no-sandbox", "--disable-setuid-sandbox"]
-  });
+    const browser = await puppeteer.launch({
+        headless: "new",
+        args: [
+          "--no-sandbox",
+          "--disable-setuid-sandbox",
+          "--disable-dev-shm-usage"
+        ]
+      });
 
   const emails = new Set();
   const visited = new Set();
