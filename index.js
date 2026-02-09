@@ -13,6 +13,13 @@ const EMAIL_REGEX =
 const MAX_PAGES = 50;
 const CONCURRENCY = 5;
 
+app.get("/welcome", (req, res) => {
+    res.json({
+      message: "Welcome to the app",
+      status: "running"
+    });
+  });
+
 app.get("/extract-emails", async (req, res) => {
   const domain = req.query.domain;
   if (!domain) {
